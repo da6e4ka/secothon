@@ -1,0 +1,199 @@
+<include('../layout/page.marko', input)>
+    <@body>
+<div if(!input.profile.VKUid) class="for-vk">
+    <div class="container">
+        <div class="mt-3 row justify-content-center vk-row">
+            <a href="${input.link}"><img class="vk-logo img-fluid" src="/img/auth-vk.png" alt=""></a>
+        </div>
+    </div>
+</div>
+    <form class="container" method="post" action="/profile" enctype="multipart/form-data">
+        <div class="form-group">
+        <if(!input.profile.isVerify)>
+            <label style="color: var(--danger)"> На Вашу почту отправлено письмо для поддтверждения аккаунта </label><br/>
+            <a href="/resend-email">Отправить повторно</a><br/>
+         </if><else>
+         <label style="color: var(--success)">Ваш аккаунт подтверждён</label><br/>
+         </else>
+            <label if(!input.profile.paid) style="color: var(--danger)">Вы не оплатили участие. Сделайте это на <a href="/">Главной странице</a></label>
+        </div>
+        <div class="form-group">
+            <a if(input.profile.administrator) href="/admin">Админ-панель</a>
+            <div if(!input.profile.project)>
+                <div class="row text-in-profile" style="">
+                    Желаете добавить свой проект?
+                </div>
+                <div class="button-add-project mb-5">
+
+                    <a href="http://secothon.secon.ru/project/create">
+                        <button class="btn button-project btn-blue" type="button">
+                            Добавить проект
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div else-if(input.project && input.project.autor.toString() === input.profile._id.toString())>
+                <div class="row text-in-profile" style="">
+                    Редактировать информацию о проекте
+                </div>
+                <div class="button-update-project mb-5">
+                    <a href="/project/update">
+                        <button class="btn button-project btn-blue" type="button">
+                            Редактировать проект
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div else-if(input.profile.project) class="row text-in-profile" style="color: var(--success);">
+                Вы уже состоите в проекте!
+            </div>
+
+
+        </div>
+        <div class="form-group">
+            <div class="row text-in-profile mb-4">
+                Редактировать профиль
+            </div>
+            <label for="name"> <span> * </span> Имя</label>
+            <input name="name" type="text" class="form-control" id="name" placeholder="Иван" value="${input.profile.name}" required spellcheck="true">
+        </div>
+        <div class="form-group">
+
+            <label for="surname"> <span> * </span> Фамилия</label>
+            <input name="lastname" type="text" class="form-control mb-5" id="surname" placeholder="Иванов" value="${input.profile.lastname}" required spellcheck="true">
+            <div class="form-group">
+                <label for="image">Аватар (ограничение по размеру файла: 2Мб)</label>
+                <input accept="image/jpeg,image/jpg,image/png,image/gif,image/svg,image/x-icon" type="file" class="form-control-file" id="image" name="image">
+                <label for="image"><i> > Совет: Используйте квадратную картинку. Желательно размером 100x100 px</i></label>
+                <br if(input.profile.VKUid) /><a if(input.profile.VKUid) href="api/set_vk_avatar">Поставить аватар из ВКонтакте</a>
+            </div>
+            <div if(input.profile.avatar) class="form-group">
+                <label for="avatar-now">Аватар сейчас:</label>
+                <img src="${input.profile.avatar}" id="avatar-now" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 10px">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="logo-link-form">
+                <a class="social-link-form rounded-circle-form text-white" href="https://facebook.com/devpenza/">
+                    <img src="img/media/Facebook.svg">
+                </a>
+            </div>
+            <label for="Facebook"> Facebook </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">https://facebook.com/</span>
+                </div>
+                <input name="Facebook" type="text" class="form-control" id="Facebook" placeholder="Facebook" value="${input.profile.Facebook}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="logo-link-form">
+                <a class="social-link-form rounded-circle-form text-white" href="https://vk.com/club44400637">
+                    <img src="img/media/Github.svg">
+                </a>
+            </div>
+            <label for="Github"> Github </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">https://github.com/</span>
+                </div>
+                <input name="Github" type="text" class="form-control" id="Github" placeholder="Github"  value="${input.profile.Github}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="logo-link-form">
+                <a class="social-link-form rounded-circle-form text-white" href="https://vk.com/club44400637">
+                    <img src="img/media/Other.svg">
+                </a>
+            </div>
+            <label for="Other"> Любой свой другой аккаунт </label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">http://</span>
+                </div>
+                <input name="otherSocial" type="text" class="form-control" id="Other" placeholder="...">
+            </div>
+        </div>
+
+
+        <div class="form_group">
+            <label for="role"> <span> * </span> Роль в команде</label>
+            <if(!input.profile.project)>
+                <include("./role_select.marko", input) user=input.profile/>
+            </if><else>
+                Вы не можете менять роль, пока находитесь в проекте
+            </else>
+        </div>
+        <div class="form-area form-group mt-4">
+            <label for="message">О себе</label>
+            <textarea name="about" class="form-control" id="message" rows="5" placeholder="Не стесняйтесь рассказать о ваших профессиональных и личных качествах. Именно эту информацию увидят остальные участники мероприятия и будут решать, пригласить ли вас в команду или присоединиться к вашему проекту.">${input.profile.about}</textarea>
+        </div>
+
+        <div class="form-group">
+            <a href="/profile/password">Изменить пароль учётной записи</a>
+        </div>
+
+        <div class="row row-exit">
+
+        <button type="submit" class="btn btn-success">
+            Обновить
+        </button>
+            <button type="button" class="btn btn-blue" data-toggle="modal" data-target="#exit-account" style="margin-left: auto;">
+                Выйти из аккаунта
+            </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-account" style="margin-left: auto">
+                Удалить аккаунт
+            </button>
+        </div>
+    </form>
+<div class="modal" tabindex="1" role="dialog" id="delete-account">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Удаление аккаунта</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="font-size: 20px">
+                <p>
+                    Вы действительно хотите удалить аккаунт? <br/>
+                    Все ваши данные  будут утеряны без возможности восстановления <br/> <br/>
+                    Вы ещё не передумали?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a href="/api/delete" class="btn btn-danger">Да, удалить</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Я передумал</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="1" role="dialog" id="exit-account">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Выйти из аккаунта</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="font-size: 20px">
+                <p>
+                  Уже уходите?
+                </p>
+            </div>
+            <div class="modal-footer">
+                    <a href="/api/exit" class="btn btn-danger">Выйти</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Я передумал</button>
+            </div>
+        </div>
+    </div>
+</div>
+    </@body>
+</include>

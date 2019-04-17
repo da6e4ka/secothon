@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/it-lab-2018/HackatonSite/hackday-site.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "koa": "^2.5.1",
+    "koa-body": "^4.0.4",
+    "koa-morgan": "^1.0.1",
+    "koa-router": "^7.4.0",
+    "mongodb": "^3.1.1",
+    "mongoose": "^5.2.2",
+    "npm": "^6.4.0",
+    "sync-request": "^6.0.0",
+    "validator": "^10.5.0"
+  }
+}

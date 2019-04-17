@@ -1,0 +1,25 @@
+<include('../../layout/adminPage.marko', input) title="Создать информационного партнёра">
+<@body>
+<form class="container" method="post" action="/admin/support" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name"><span>*</span> Название ресурса</label>
+        <input name="name" class="form-control" id="name" type="text" placeholder="Название"  required>
+    </div>
+    <div class="form-group">
+        <label for="link"><span>*</span> Ссылка на ресурс</label>
+        <div class="input-group" id="link">
+            <div class="input-group-prepend">
+                <span class="input-group-text">http://</span>
+            </div>
+            <input type="text" name="link" class="form-control" placeholder="Ссылка" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture"><span>*</span> Лого ресурса</label>
+        <br/>
+        <input accept="image/jpeg,image/jpg,image/png,image/gif,image/svg,image/x-icon" name="picture" id="picture" type="file" required>
+    </div>
+    <button type="submit" class="btn btn-blue">Сохранить</button>
+</form>
+</@body>
+</include>

@@ -1,0 +1,40 @@
+<include('../layout/page.marko', input)>
+<@body>
+
+<section class="about-us">
+
+
+    <!--
+    <div if(input.alert) style="width: 100vw; z-index: 10000; position: absolute;">
+        <div class="alert alert-${input.alert.type ? input.alert.type : 'warning'} alert-dismissible fade show" role="alert" style="margin: 40px; width: auto">
+            ${input.alert.text ? input.alert.text : input.alert}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+    -->
+
+
+
+    <div class="new_password">
+        <div class="container">
+        </div>
+        <form class="container" action='/recovery/token' method='post'>
+
+            <div className="form-group">
+                <label for="code">Введите код</label>
+                <input name="code" required type="password" class="form-control" id="code">
+            </div>
+
+            <button type="submit" class="mb-5 btn btn-primary"> Отправить </button>
+
+
+        </form>
+    </div>
+    <a href="http://secothon.secon.ru">Вернуться на главную страницу</a>
+</section>
+
+
+</@body>
+</include>

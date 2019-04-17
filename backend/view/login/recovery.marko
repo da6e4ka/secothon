@@ -1,0 +1,29 @@
+<include('../layout/page.marko', input)>
+    <@body>
+
+<div class="new_password">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h3 class="main_header">Забыли пароль?</h3>
+        </div>
+    </div>
+    <form class="container" action='/recovery' method='post'>
+        <div class="mt-5 form-group">
+            <label for="email">* E-mail</label>
+            <input name="email" type="email" class="form-control" id="email" >
+        </div>
+        <button type="submit" class="mb-4 btn btn-primary">Восстановить пароль</button>
+
+        <div class="mb-5 row">
+            <div class="col-md-12 sing-link">
+                <a href="/login">Авторизоваться</a>
+            </div>
+            <div class="col-md-12 sing-link">
+                <a href="/registration">Зарегистрироваться</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+    </@body>
+</include>

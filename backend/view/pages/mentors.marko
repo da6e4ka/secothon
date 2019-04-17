@@ -1,0 +1,55 @@
+<include('../layout/page.marko', input)>
+    <@body>
+<p if(!input.mentors.length) class="container mt-3 text-about-us" >
+    В списке пока никого нет
+</p>
+<div else class="content">
+    <for(mentor in input.mentors)>
+    $ let isReal = (key) => (mentor[key] && mentor[key].toString() && !(mentor[key].toString() in ['""', "''", "{}", "[]", ""]));
+
+
+
+    <div class="container" id="${mentor._id}">
+        <div class="mb-4 row align-items-center">
+            <div class="col-md mentor-info">
+                <div class="text-center" style="float: left; margin-right: 20px;">
+                    <img class="users_pic" src="${mentor.picture}" style="border-radius: 50%; width: 110px; height: 110px" alt="">
+                </div>
+                <p class="part_users" style="text-align: left;">${mentor.name}<br/>
+                </p>
+                <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title" style="background-color: #fff; padding: 40px 0 0;">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse${mentor._id}MentorInfo" aria-expanded="true" aria-controls="collapseOne">
+                                Подробнее
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse${mentor._id}MentorInfo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" style="text-align: left">
+                        <div>
+                            <p class="faq-header-list" style="margin-bottom: 0">О менторе: <span if(mentor.description) class="users_work">${mentor.description}</span></p>
+                            <p if(mentor.company) class="faq-header-list" style="padding: 0; margin: 0 0 0 25px;">Работает в компании: <span class="users_work">${mentor.company}</span></p>
+                            <p class="faq-header-list" style="padding: 0; margin: 0 0 1rem 25px;">Должность: <span class="users_work">${mentor.job}</span></p>
+                        </div>
+
+
+                        <p if(isReal("vk") || isReal("fb")) class="faq-header-list" style="margin-bottom: 0">Ссылки на соц. сети:<br/>
+                            <ul>
+                                <li if(isReal("fb"))><a href="https://facebook.com/${mentor.fb}"><i class="fab fa-facebook-f" style="color: var(--fb)"></i> Facebook</a></li>
+                                <li if(isReal("vk"))><a href="https://vk.com/${mentor.vk}"><i class="fab fa-vk" style="color: var(--vk)"></i> VK</a></li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </for>
+
+</div>
+
+    </@body>
+</include>

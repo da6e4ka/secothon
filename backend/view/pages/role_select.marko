@@ -1,0 +1,11 @@
+<select name="role" class="form-control" id="role">
+    <option value="${input.roles.default_role.key}">${input.roles.default_role.show_name}</option>
+    <for(i in input.roles.roles)>
+        $ let selected = input.user && input.user.role === i.key;
+        <if(selected)>
+            <option value="${i.key}" selected>${i.show_name}</option>
+        </if><else>
+            <option value="${i.key}" >${i.show_name}</option>
+        </else>
+    </for>
+</select>

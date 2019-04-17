@@ -1,0 +1,42 @@
+<div>
+    <a href="/admin/support" class="btn btn-blue" style="margin: 20px">Создать ресурс инф. поддержки</a>
+    <table if(input.support.length)  class="tablesorter">
+        <thead>
+            <tr>
+                <th style="width: 0" class="{sorter:false} move-col"></th>
+                <th>№</th>
+                <th class="{sorter:false}">Фото</th>
+                <th>Название</th>
+                <th>Ссылка</th>
+                <th class="{sorter: false}">Редактировать</th>
+            </tr>
+        </thead>
+
+
+        <tbody id="support-move">
+            $ let count = 1;
+            <for(support in input.support)>
+                <tr class="drag-elem">
+                    <td class="move-col"><i class="fas fa-bars move-bars support-order" id="${support._id}"></i></td>
+                    <td>${count++}</td>
+                    <td><img src="${support.picture}" alt="" class="admin-image"></td>
+                    <td>${support.name}</td>
+                    <td><a href="http://${support.link}">${support.link}</a></td>
+                    <td>
+                        <a class="edit-link" href="/admin/edit/support?id=${support._id}">Изменить</a>
+                        <a class="edit-link" href="/admin/support/delete?id=${support._id}">Удалить</a>
+                    </td>
+                </tr>
+            </for>
+        </tbody>
+
+        <script>
+            // List with handle
+            sortInit('support')
+        </script>
+        <button class="btn btn-blue" onclick="saveOrder(this, 'support')">Сохранить порядок</button>
+    </table>
+    <p else class="container">
+        Вы ещё не создали ни одного информационного партнёра. Сделайте это прямо <a href="/admin/support">сейчас!</a>
+    </p>
+</div>

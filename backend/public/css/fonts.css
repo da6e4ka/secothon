@@ -1,0 +1,18 @@
+@font-face {
+    font-family: PantonBold;
+    src: url('../fonts/PantonBold.otf');
+}
+@font-face {
+    font-family: PantonLight;
+    src: url('../fonts/PantonLight.otf');
+}
+
+@font-face {
+    font-family: GeometriaBold;
+    src: url('../fonts/Geometria-Bold.otf');
+}
+
+@font-face {
+    font-family: GeometriaLight;
+    src: url('../fonts/Geometria-Light.otf');
+}

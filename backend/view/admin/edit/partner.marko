@@ -1,0 +1,55 @@
+<include('../../layout/adminPage.marko', input) title="Изменить партнёра">
+<@body>
+$ let data = input.data
+<form class="container" method="post" action="/admin/edit/partner?id=${data._id}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name"><span>*</span> Наименование партнёра</label>
+        <input name="name" class="form-control" id="name" type="text" placeholder="Название" value="${data.name}" required>
+    </div>
+    <div class="form-group">
+        <label for="description"><span>*</span> Описание партнёра</label>
+        <textarea name="description" class="form-control" id="description" type="text" placeholder="Описание" value="${data.description}" required>${data.description}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="link"><span>*</span> Ссылка на партнёра</label>
+        <div class="input-group" id="link">
+            <div class="input-group-prepend">
+                <span class="input-group-text">http://</span>
+            </div>
+            <input type="text" name="link" class="form-control" placeholder="Ссылка" value="${data.link}" required>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <label for="picture"><span>*</span> Тип партнёра</label>
+
+        <select name="partnerType" class="form-control" required>
+            <for(type in input.partnersType)>
+                <option if(type === data.partnerType) value="${type}" selected>${type}</option>
+                <option else value="${type}">${type}</option>
+            </for>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="picture">Лого партнёра</label>
+        <br/>
+        <input accept="image/jpeg,image/jpg,image/png,image/gif,image/svg,image/x-icon" name="picture" id="picture" type="file">
+    </div>
+
+    <div class="form-group">
+        <label for="org-logo">Лого партнёра сейчас:</label>
+        <img src="${data.picture}" id="org-logo">
+    </div>
+
+    <div class="flex">
+        <button type="submit" class="btn btn-blue">
+            Обновить
+        </button>
+        <button type="reset" class="btn btn-blue" style="margin-left: auto;">
+            Сбросить
+        </button>
+    </div>
+</form>
+</@body>
+</include>

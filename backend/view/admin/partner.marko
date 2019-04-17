@@ -1,0 +1,54 @@
+<div>
+    <a href="/admin/new/partner" class="btn btn-blue" style="margin: 20px">Создать партнера</a>
+    <button class="btn btn-blue" onclick="saveOrder(this, 'partner')">Сохранить порядок</button>
+    <form class="container" action="/admin/partner/types" method="post">
+        <div class="form-group">
+            <label for="types"><span>*</span> Типы (статусы) партнёров (во множеств. числе и через запятую <code>,</code>)</label>
+            <input type="text" name="types" id="types" class="form-control" value="${input.partnersType.toString()}" placeholder="Типы партнёров. ПОРЯДОК ВЛИЯЕТ НА СОРТИРОВКУ" required>
+            <label for="types">ВНИМАНИЕ! Партнёры сначала сортируются по типу (статусу), а потом уже по тому, как Вы их расположите</label>
+            <button class="btn btn-blue" type="submit">Сохранить изменения</button>
+        </div>
+    </form>
+    <table if(input.partners.length)  class="tablesorter">
+
+        <thead>
+            <tr>
+                <th style="width: 0" class="{sorter:false} move-col"></th>
+                <th>№</th>
+                <th class="{sorter:false}">Фото</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Ссылка</th>
+                <th>Статус</th>
+                <th class="{sorter: false}">Редактировать</th>
+            </tr>
+        </thead>
+        
+        <tbody id="partner-move">
+            $ let count = 1;
+            <for(partner in input.partners)>
+                <tr class="drag-elem">
+                    <td class="move-col"><i class="fas fa-bars move-bars partner-order" id="${partner._id}"></i></td>
+                    <td>${count++}</td>
+                    <td><img src="${partner.picture}" alt="" class="admin-image"></td>
+                    <td>${partner.name}</td>
+                    <td>${partner.description.length < 150 ? partner.description : partner.description.slice(0, 149) + "…"}</td>
+                    <td><a href="http://${partner.link}">${partner.link}</a></td>
+                    <td>${partner.partnerType}</td>
+                    <td>
+                        <a class="edit-link" href="/admin/edit/partner?id=${partner._id}">Изменить</a>
+                        <a class="edit-link" href="/admin/partner/delete?id=${partner._id}">Удалить</a>
+                    </td>
+                </tr>
+            </for>
+        </tbody>
+
+        <script>
+            // List with handle
+            sortInit('partner')
+        </script>
+    </table>
+    <p else class="container">
+        Вы ещё не создали ни одного информационного партнёра. Сделайте это прямо <a href="/admin/new/partner">сейчас!</a>
+    </p>
+</div>

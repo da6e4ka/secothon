@@ -1,0 +1,60 @@
+<div class="users">
+    <div class="counter">
+        <div class="not-paid-users">Оплаченные пользователи (<a href="#users"> ${input.users.filter(elem => elem.paid).length} </a> из <a href="#users"> ${input.users.filter(elem => elem.isVerify).length} </a>)</div>
+    </div>
+    <div class="flex row row-exit">
+        <a href="/admin/users/csv" class="btn btn-blue btn-auto-magin">Сохранить таблицу CSV (ВСЕ)</a>
+        <a href="/admin/users/csv?paid=true" class="btn btn-blue btn-auto-magin">Сохранить таблицу CSV (ОПЛАЧЕННЫЕ)</a>
+
+        <a href="/admin/users/excel" class="btn btn-blue btn-auto-magin">Сохранить таблицу Excel (ВСЕ)</a>
+        <a href="/admin/users/excel?paid=true" class="btn btn-blue btn-auto-magin">Сохранить таблицу Excel (ОПЛАЧЕННЫЕ)</a>
+    </div>
+    <table class="tablesorter">
+        <thead>
+            <tr>
+                <th style="width: 0">№</th>
+                <th>ФИО</th>
+                <th>Email</th>
+                <th>Тип</th>
+                <th>Оплачено</th>
+                <th>Верифицированно</th>
+                <th class="{sorter: false}">Редактировать</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <for(let index = 0; index < input.users.length; index++)>
+        $ let user = input.users[index]
+            <tr>
+                <form action="/admin/users/save?id=${user._id}" method="post">
+                    <td>${index+1}</td>
+                    <td>${user.name} ${user.lastname}</td>
+                    <td>${user.email}</td>
+                    <td class="full-content">
+                        $ let admin = user.administrator;
+                        <select name="admin" class="form-control">
+                            <option value="true" ${admin ? "selected" : ""}>Администратор</option>
+                            <option value="false" ${admin ? "" : "selected"}>Пользователь</option>
+                        </select></td>
+                    <td><input if(user.paid) type="checkbox" name="paid" checked>
+                        <input else type="checkbox" name="paid"></td>
+                    <td><input if(user.isVerify) type="checkbox" name="isVerify" checked>
+                        <input else type="checkbox" name="isVerify"></td>
+                    <td>
+                        <button class="btn-link" type="submite" href="#">Сохранить изменения </button> &nbsp;
+                        <a href="/admin/users/delete?id=${user._id}">Удалить</a>
+                    </td>
+                </form>
+            </tr>
+        </for>
+        </tbody>
+    </table>
+
+    <div class="flex row row-exit">
+        <a href="/admin/users/csv" class="btn btn-blue btn-auto-magin">Сохранить таблицу CSV (ВСЕ)</a>
+        <a href="/admin/users/csv?paid=true" class="btn btn-blue btn-auto-magin">Сохранить таблицу CSV (ОПЛАЧЕННЫЕ)</a>
+
+        <a href="/admin/users/excel" class="btn btn-blue btn-auto-magin">Сохранить таблицу Excel (ВСЕ)</a>
+        <a href="/admin/users/excel?paid=true" class="btn btn-blue btn-auto-magin">Сохранить таблицу Excel (ОПЛАЧЕННЫЕ)</a>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div>
+    <a href="/admin/new/nomination" class="btn btn-blue" style="margin: 20px">Создать номинацию</a>
+    <button class="btn btn-blue" onclick="saveOrder(this, 'nomination')">Сохранить порядок</button>
+    <table if(input.nominations.length)  class="tablesorter">
+        <thead>
+            <tr>
+                <th style="width: 0" class="{sorter:false} move-col"></th>
+                <th>№</th>
+                <th class="{sorter:false}">Фото</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th class="{sorter: false}">Редактировать</th>
+            </tr>
+        </thead>
+
+        <tbody id="nomination-move">
+            $ let count = 1;
+            <for(nomination in input.nominations)>
+                <tr class="drag-elem">
+                    <td class="move-col"><i class="fas fa-bars move-bars partner-order" id="${nomination._id}"></i></td>
+                    <td>${count++}</td>
+                    <td><img src="${nomination.picture}" alt="" class="admin-image"></td>
+                    <td>${nomination.name}</td>
+                    <td>${nomination.description.length < 150 ? nomination.description : nomination.description.slice(0, 149) + "…"}</td>
+                    <td>
+                        <a class="edit-link" href="/admin/edit/nomination?id=${nomination._id}">Изменить</a>
+                        <a class="edit-link" href="/admin/nomination/delete?id=${nomination._id}">Удалить</a>
+                    </td>
+                </tr>
+            </for>
+        </tbody>
+
+        <script>
+            // List with handle
+            sortInit('nomination')
+        </script>
+    </table>
+    <p else class="container">
+        Вы ещё не создали ни одной номинации. Сделайте это прямо <a href="/admin/new/nomination">сейчас!</a>
+    </p>
+</div>

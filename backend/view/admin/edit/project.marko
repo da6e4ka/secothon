@@ -1,0 +1,36 @@
+<include('../../layout/adminPage.marko', input) title="Редактировать проект">
+<@body>
+$ let data = input.data
+<form class="container" method="post" action="/admin/edit/project?id=${data._id}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title"><span>*</span> Название проекта</label>
+        <input name="title" class="form-control" id="title" type="text" placeholder="Название" value="${data.title}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="text"><span>*</span> Описание проекта</label>
+        <textarea name="text" class="form-control" id="text" type="text" placeholder="Описание" value="${data.text}" required>${data.text}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="problem"><span>*</span> Проблема</label>
+        <textarea name="problem" class="form-control" id="problem" type="text" placeholder="Проблема" value="${data.problem}" required>${data.problem}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="solution"><span>*</span> Решение</label>
+        <textarea name="solution" class="form-control" id="solution" type="text" placeholder="Решение" value="${data.solution}" required>${data.solution}</textarea>
+    </div>
+
+
+    <div class="flex">
+        <button type="submit" class="btn btn-blue">
+            Обновить
+        </button>
+        <button type="reset" class="btn btn-blue" style="margin-left: auto;">
+            Сбросить
+        </button>
+    </div>
+</form>
+</@body>
+</include>

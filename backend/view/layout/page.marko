@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximal-scale=1.0"  />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="/js/markdown.min.js" type="application/javascript"></script>
+
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+
+    <script type="application/javascript" src="js/cookie.js"></script>
+    <script type="application/javascript" src="js/fix.js"></script>
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/mainstyle.css" />
+    <link rel="stylesheet" href="/css/pagestyle.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+    <title>${input.title}</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<include("./alert.marko", input)/>
+
+<div class="screen-sing"></div>
+<h2 class="header-row">${input.title} <span style="margin:0 10px 0 10px"><a style="color: #afafaf" href="/">Вернуться на главную</a></span> </h2>
+
+<include(input.body)/>
+<div class="container">
+    <hr/>
+    <div class="row mb-3">
+        <a href="/">Вернуться на главную страницу</a>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col">
+                <p><a class="copyright" href="https://vk.com/itlab58?w=wall-94462582_744"> Сделано в IT-Лаборатории`2018</a></p>
+                <p><a class="copyright" href="mailto:secothon@secon.ru">secothon@secon.ru</a></p>
+                <p class="copyright">Все права защищены.</p>
+            </div>
+            <div class="logo-link-footer">
+                <ul class="list-inline-footer mb-3">
+                    <li class="list-inline-item-footer"><a class="social-link-footer rounded-circle-footer text-white" href="https://vk.com/secothon_2018">
+                        <img src="img/media/Vk.svg">
+                    </a></li>
+                    <li class="list-inline-item-footer"><a class="social-link-footer rounded-circle-footer text-white" href="https://www.facebook.com/events/1787014618072626/">
+                        <img src="img/media/Facebook.svg">
+                    </a></li>
+                    <li class="list-inline-item-footer"><a class="social-link-footer rounded-circle-footer text-white" href="https://t.me/secothon">
+                        <img src="img/media/Telegram.svg">
+                    </a></li>
+                    <li class="list-inline-item-footer"><a class="social-link-footer rounded-circle-footer text-white" href="https://twitter.com/secon_ru">
+                        <img src="img/media/Twitter.svg">
+                    </a></li>
+                    <li class="list-inline-item-footer"><a class="social-link-footer rounded-circle-footer text-white" href="https://www.instagram.com/secon_ru/">
+                        <img src="img/media/Instagram.svg">
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    let mdDirList = document.getElementsByClassName("markdown");
+    console.log("MD:", mdDirList);
+    for (let i = 0; i < mdDirList.length; i++) {
+        let d = mdDirList[i];
+        console.log(d);
+        d.innerHTML = markdown.toHTML( d.innerText )
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<div>
+    <a href="/admin/new/mentor" class="btn btn-blue" style="margin: 20px">Создать ментора</a>
+    <button class="btn btn-blue" onclick="saveOrder(this, 'mentor')">Сохранить порядок</button>
+    <table if(input.mentors.length) class="tablesorter">
+        <thead>
+            <tr>
+                <th style="width: 0" class="{sorter:false} move-col"></th>
+                <th>№</th>
+                <th class="{sorter:false}">Фото</th>
+                <th>Имя</th>
+                <th>Компания</th>
+                <th>Должность</th>
+                <th>О менторе</th>
+                <th>VK</th>
+                <th>FB</th>
+                <th class="{sorter: false}">Редактировать</th>
+            </tr>
+        </thead>
+        <tbody>
+        <for(let index = 0; index < input.mentors.length; index++)>
+        $ let mentor = input.mentors[index]
+        <tr>
+            <td class="move-col"><i class="fas fa-bars move-bars mentor-order" id="${mentor._id}"></i></td>
+            <td>${index+1}</td>
+            <td><img src="${mentor.picture}" alt="" class="admin-image"></td>
+            <td>${mentor.name}</td>
+            <td>${mentor.company || "—"}</td>
+            <td>${mentor.job}</td>
+            <td if(mentor.description)>${(mentor.description.length < 150 ? mentor.description : mentor.description.slice(0, 149) + "…") || "—"}</td>
+            <td else>—</td>
+            <td><a if(mentor.vk) href="https://vk.com/${mentor.vk}">${mentor.vk}</a>
+                <else>—</else></td>
+            <td><a if(mentor.fb) href="https://facebook.com/${mentor.fb}">${mentor.fb}</a>
+                <else>—</else></td>
+            <td>&nbsp;
+                <a class="edit-link" href="/admin/edit/mentor?id=${mentor._id}">Изменить</a>
+                <a class="edit-link" href="/admin/mentor/delete?id=${mentor._id}">Удалить</a>
+            </td>
+        </tr>
+        </for>
+        </tbody>
+
+        <script>
+            // List with handle
+            sortInit('mentor')
+        </script>
+    </table>
+    <p else class="container">
+        Вы ещё не создали ни одного ментора. Сделайте это прямо <a href="/admin/new/mentor">сейчас!</a>
+    </p>
+</div>

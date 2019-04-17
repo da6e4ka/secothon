@@ -1,0 +1,146 @@
+<include('../layout/page.marko', input)>
+<@body>
+<section class="about-us">
+    <div>
+        <div class="project-container">
+            <div class="projects_header">
+                <div class="projects_name">
+                    Было участников: ${input.users.length}
+                </div>
+                <div class="projects_name">
+                    Фото:
+                </div>
+                <div class="projects_name">
+                    Отчёт:
+                </div>
+            </div>
+            <h2 class="header-row">
+                Победители номинаций
+            </h2>
+            <div>
+                <div class="project-container">
+                    <div class="projects_header">
+                        <div class="nomination-item ">
+                            <img src="img/panel/Tech.png" alt="">
+                            <p>Tech</p>
+                        </div>
+                        <div class="projects_name">
+                            Название команды:
+                        </div>
+                        <div class="nomination-item ">
+                            <img src="img/panel/Startup.png" alt="">
+                            <p>StartUp</p>
+                        </div>
+                        <div class="projects_name">
+                            Название команды:
+                        </div>
+                        <div class="nomination-item ">
+                            <img src="img/panel/Tech.png" alt="">
+                            <p>Hardware</p>
+                        </div>
+                        <div class="projects_name">
+                            Название команды:
+                        </div>
+                        <div class="nomination-item ">
+                            <img src="img/panel/hack.png" alt="">
+                            <p>Hack</p>
+                        </div>
+                        <div class="projects_name">
+                            Название команды:
+                        </div>
+                        <div class="nomination-item ">
+                            <img src="img/panel/enter.png" alt="">
+                            <p>Entertainment</p>
+                        </div>
+                        <div class="projects_name">
+                            Название команды:
+                        </div>
+                    </div>
+                    <h2 class="header-row">
+                        Список проектов 2018 года
+                    </h2>
+                    <for(project in input.projects)>
+                    <div class="projects_name">
+                        Название проекта: ${project.title}
+                    </div>
+                    </for>
+                </div>
+                <section id="org">
+                    <h2 class="header-row">
+                        Менторы
+                    </h2>
+                    <div id="carousel" class="carousel">
+                        <div class="carousel-element">
+                            <div class="nomination-item">
+                                <img src="img/mentors/1.png" alt="">
+                                <p class="mentor-work"> Иван Иванов Сodeinside <br/> Frontend-разработчик </p>
+                            </div>
+                            <div class="logo-link-mentor">
+                                <a class="social-link-mentor rounded-circle-mentor text-white" href="https://vk.com/club44400637">
+                                    <img src="img/media/Vk.svg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-element">
+                            <div class="nomination-item">
+                                <img src="img/mentors/1.png" alt="">
+                                <p class="mentor-work">Иван Иванов Сodeinside <br/> Java-разработчик </p>
+                            </div>
+                            <div class="logo-link-mentor">
+                                <a class="social-link-mentor rounded-circle-mentor text-white" href="https://vk.com/club44400637">
+                                    <img src="img/media/Vk.svg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-element">
+                            <div class="nomination-item">
+                                <img src="img/mentors/1.png" alt="">
+                                <p class="mentor-work"> Иван Иванов Codeinside <br/> Backend-разработчик </p>
+                            </div>
+                            <div class="logo-link-mentor">
+                                <a class="social-link-mentor rounded-circle-mentor text-white" href="https://vk.com/club44400637">
+                                    <img src="img/media/Vk.svg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-element">
+                            <div class="nomination-item">
+                                <img src="img/mentors/1.png" alt="">
+                                <p class="mentor-work">Иван Иванов Codeinside <br/> Frontend-разработчик </p>
+                            </div>
+                            <div class="logo-link-mentor">
+                                <a class="social-link-mentor rounded-circle-mentor text-white" href="https://vk.com/club44400637">
+                                    <img src="img/media/Vk.svg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-element">
+                            <div class="nomination-item">
+                                <img src="img/mentors/1.png" alt="">
+                                <p class="mentor-work">Иван Иванов Codeinside <br/> Java-разработчик </p>
+                            </div>
+                            <div class="logo-link-mentor">
+                                <a class="social-link-mentor rounded-circle-mentor text-white" href="https://vk.com/club44400637">
+                                    <img src="img/media/Vk.svg">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-element">
+                            <div class="nomination-item">
+                                <img src="img/mentors/1.png" alt="">
+                                <p class="mentor-work">Иван Иванов Codeinside <br/> Backend-разработчик </p>
+                            </div>
+                            <div class="logo-link-mentor">
+                                <a class="social-link-mentor rounded-circle-mentor text-white" href="https://vk.com/club44400637">
+                                    <img src="img/media/Vk.svg">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+</@body>
+</include>

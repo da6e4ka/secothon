@@ -1,0 +1,55 @@
+<div>
+    <table if(input.projects.length)  class="tablesorter">
+        <thead>
+        <tr>
+            <th style="width: 0" class="{sorter:false} move-col"></th>
+            <th>№</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Кол-во участников</th>
+            <th>Требуется</th>
+            <!--<th>Ожидают ответа</th>-->
+            <th class="{sorter: false}">Редактировать</th>
+        </tr>
+        </thead>
+
+
+        <tbody id="project-move">
+        $ let count = 1;
+        $ const short = text => {return (text.length < 130 ? text : text.slice(0, 129) + "…").replace(/\n/g, "\t")}
+        <!--$ const short = text => text-->
+        <for(project in input.projects)>
+        <tr class="drag-elem">
+            $ let need = 0;
+            $ for(let key in project.need) {
+                  need += project.need[key]
+              }
+            <!--$ let want = 0;-->
+            <!--$ for(let key in project.want) {-->
+                  <!--want += project.need[key]-->
+              <!--}-->
+            <td class="move-col"><i class="fas fa-bars move-bars project-order" id="${project._id}"></i></td>
+            <td>${count++}</td>
+            <td>${project.title}</td>
+            <td>${short(project.text)}</td>
+            <td>${project.users.length}</td>
+            <td>${need}</td>
+            <!--<td>${want}</td>-->
+            <td>
+                <a class="edit-link" href="/admin/edit/project?id=${project._id}">Изменить</a>
+                <a class="edit-link" href="/admin/project/delete?id=${project._id}">Удалить</a>
+            </td>
+        </tr>
+        </for>
+        </tbody>
+
+        <script>
+            // List with handle
+            sortInit('project')
+        </script>
+        <button class="btn btn-blue" onclick="saveOrder(this, 'project')" style="margin: 20px">Сохранить порядок</button>
+    </table>
+    <p else class="container">
+        Пока никто не предложил свой проект. Ждём....
+    </p>
+</div>

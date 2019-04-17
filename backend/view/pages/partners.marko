@@ -1,0 +1,141 @@
+<include('../layout/page.marko', input)>
+<@body>
+<section class="about-us">
+    <div class="container mt-3 text-about-us" >
+        $ let r = '';
+        <for(partner in input.partner)>
+            <h2 if(r !== partner.partnerType) class="main-header" id="${r = partner.partnerType}">
+                ${r}
+            </h2>
+            <div class="media partners-list" id="${partner.link}">
+                <a href="http://${partner.link}" class="more-link">
+                    <img class="mr-3 org-logo" src="${partner.picture}" alt=""/>
+                </a>
+                <div class="media-body partners-block">
+                    <h2 class="mt-3 partners-header">${partner.name}</h2>
+                    <div class="partners-description">
+                        ${partner.description}
+                    </div>
+                </div>
+            </div>
+        </for>
+        <a href="https://drive.google.com/file/d/1FHda16fpfCPajG40DftCl5vzdyS0MGec/view" style="margin: 0;" target="_blank"><button type="button" class="btn btn-blue" style="padding: 10px 15px;">Хочу стать спонсором или партнером</button></a>
+        <!--<h2 class="main-header">-->
+            <!--Мегаспонсор-->
+        <!--</h2>-->
+
+        <!--<div class="media partners-list">-->
+            <!--<a href="http://tortugasocial.ru/" class="more-link">-->
+            <!--<img class="mr-3 org-logo" src="img/org_logo/tortuga150_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">Тортуга</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Компания “Тортуга” является одним из ведущих разработчиков игр для социальных сетей и мобильных платформ с опытом издания игр по всему миру. Игры Тортуги можно встретить в каталогах социальных сетей Вконтакте, Одноклассники, Facebook, NK, Draugiem, Мой Мир и других. Общая аудитория продуктов компании за 7 лет ее работы превышает 50 000 000 человек.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<h2 class="main-header">-->
+            <!--Спонсоры-->
+        <!--</h2>-->
+
+        <!--<div class="media partners-list">-->
+            <!--<a href="http://fun.co/rp/" class="more-link">-->
+            <!--<img class="mr-3 org-logo" src="img/org_logo/funcorp_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">FunCorp</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Международная компания с офисами в Пензе, Лос-Анджелесе, Москве и Лимассоле. С 2004 года мы создаем сервисы, которые делают мир веселее. Ежедневно над продуктами Корпорации смеются более 4 миллионов человек по обе стороны океана, а наш флагман iFunny входит в TOP10 развлекательных приложений США.-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="media partners-list">-->
+            <!--<a href="https://bit.games/" class="more-link">-->
+            <!--<img class="mr-3 org-logo partners-header" src="img/org_logo/bit_games_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">BIT.GAMES</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--BIT.GAMES делает игры для социальных сетей и мобильных платформ: тамагочи, мобварс, фермы, ситибилдеры, hidden object, казуальные игры в стиле Match 3. Компания создала несколько приложений со своим оригинальным геймплеем - приключения с развивающимся сюжетом, большим миром и яркими персонажами. Команда BIT.GAMES постоянно ищет новые идеи и пробует новые возможности.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<h2 class="main-header">-->
+            <!--Партнеры-->
+        <!--</h2>-->
+
+        <!--<div class="media partners-list">-->
+            <!--<a href="https://vk.com/frit_fond" class="more-link">-->
+            <!--<img class="mr-3 org-logo" src="img/org_logo/logo_frit_150_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">ФРИТ</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Фонд развития информационных технологий призван упростить для молодых инициативных пензенцев задачу создания своего стартапа в IT-сфере, а также помочь специалистам и руководителям IT-компаний найти друг друга.-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="media partners-list">-->
+            <!--<a href="https://dodopizza.ru/penza/moskovskaya60?utm_source=smmashing-ya&utm_medium=cpc&utm_campaign=34483240&utm_content=5666146923&yclid=4880721500742097012" class="more-link">-->
+            <!--<img class="mr-3 org-logo partners-header" src="img/org_logo/dodo150_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">Сеть пиццерий "Додо пицца"</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Додо Пицца - мировая компания из России, покорила уже 10 стран (в том числе США и Китай). Компания дарит пиццу, если курьер доставляет Ваш заказ дольше 60 минут. Ресторан в городе Пенза находится по адресу Московская 60.</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="media partners-list">-->
+            <!--<a href="http://biznes-penza.ru/" class="more-link">-->
+            <!--<img class="mr-3 org-logo partners-header" src="img/org_logo/g150_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">ГКУ "Пензенское региональное объединение бизнес-инкубаторов"</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Пензенское региональное объединение бизнес-инкубаторов - инфраструктура, объединяющая в себе 14 бизнес-инкубаторов Пензенской области, 2 технопарка и центр поддержки предпринимательства. ГКУ “ПРОБИ” – это инструмент поддержки малого бизнеса, на ранней стадии их деятельности, путем предоставления в аренду оборудованных помещений и оказания консультационных, бухгалтерских, юридических и прочих услуг.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="media partners-list">-->
+            <!--<a href="https://okdesk.ru/?utm_source=yadirect&utm_medium=cpc&utm_term=mainlink&#45;&#45;Okdesk&#45;&#45;premium&#45;&#45;1&utm_content=3077038904&utm_campaign=brand_search&yclid=4880761724504908272" class="more-link">-->
+            <!--<img class="mr-3 org-logo partners-header" src="img/org_logo/okdesk_logo_150_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">Okdesk</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Облачное решение для автоматизации процессов поддержки и взаимодействия с юр.лицами в малых и средних сервисных компаниях. Обладает функциональностью Help Desk + CRM (учет и обработка заявок, учет договоров, клиентов и контактных лиц с индивидуальными условиями обслуживания, история взаимодействия). Бесплатный встроенный клиентский портал. Регистрация обращений по почте и с сайта. Переписка с клиентом. Функциональность отчетов и дашбордов для руководителей.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="media partners-list">-->
+            <!--<a href="https://vk.com/rollerdrompnz" class="more-link">-->
+            <!--<img class="mr-3 org-logo partners-header" src="img/org_logo/roller_150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">Роллердром ПКиО "Олимпийский" г. Пенза</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Двухуровневое помещение площадью более тысячи шестисот квадратных метров позволяет не только кататься на роликах в любое время года, но и устраивать соревнования по спортивным танцам, проводить соревнования, карнавалы на роликах, детские праздники и даже свадьбы. Роллердром является универсальной культурно-досуговой и спортивной зоной.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="media partners-list">-->
+            <!--<a href="https://yabs.yandex.ru/count/3I1sksfAZk850AS1CLUVVbi00000EFw45K02I09Wl0Xe0d3UwAQY1O01iz2lhSBhezL-Y06fpilfCP01eAB7qYsO0SwVieyhk066uCBt6C01NDW1ijNU4-01dAkw3EW1KeW2hRoB0Q02zlDcs082y0AawSca2lW2aF62vkNOs_oe0PW3eC8ng0CAi0C4k0J_0UW4hzOF-0JryGU81VNn1v05ZPeDe0NzhWAe1U600h05uO02k0NOhGF01OsQ3SW5sAq3u0K5y0K1c0Q0qApp3g06PgW6Pia6WuPrcehGZbBH1aL0mvi945yYsGO0003G00000Aa7taXGGqFekqEm1u20c0pG1mBW1uOAyGUYyL7IARPLalW70e080j08X8A3WC6GW0BW2FkvCu0A0S4A00000000y3_O2WBW2e29UlWAmFmLgWiGavoRyzv8003dRj_Q67G50DaBtaXGGqFekqFe2_Nn1_0B1kWC2-0D0V8D0FeD088E08aE00000000y3-G3i24FPWEWutMqwcHjCTIe0x0X3sm3W7O3WMX3m0000000F0_?q=%D0%BC%D1%82%D1%81+%D0%BE%D1%84%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9+%D1%81%D0%B0%D0%B9%D1%82" class="more-link">-->
+            <!--<img class="mr-3 org-logo partners-header" src="img/org_logo/mts_150x150.png" alt=""/>-->
+            <!--</a>-->
+            <!--<div class="media-body partners-block">-->
+                <!--<h2 class="mt-3 partners-header">МТС</h2>-->
+                <!--<div class="partners-description">-->
+                    <!--Ведущая компания в России и странах СНГ по предоставлению услуг мобильной и фиксированной связи, доступа в интернет, кабельного и спутникового ТВ-вещания, цифровых сервисов и мобильных приложений, финансовых услуг и сервисов электронной коммерции, а также конвергентных ИТ-решений в сфере системной интеграции, интернета вещей, мониторинга, обработки данных и облачных вычислений.-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</section>
+</@body>
+</include>

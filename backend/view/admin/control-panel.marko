@@ -1,0 +1,23 @@
+<h2 class="admin-block-header">Вы вошли как <a href="#control-panel">${input.admin.name} ${input.admin.lastname} (${input.admin.email})</a></h2>
+<div class="panel">
+    <div class="side users-block">
+        <h3 class="block-header">Участники:</h3>
+        <div class="block-content">
+            <p class="payed">Всего: <a href="#users">${input.users.length}</a></p>
+            <p class="payed">Оплаченных: <a href="#users">${input.users.filter(elem => elem.paid).length}</a></p>
+            <p class="not-payed">Неоплаченных: <a href="#users">${input.users.filter(elem => !elem.paid).length}</a></p>
+            <p class="admin-page">Администраторы: <a href="#users">${input.users.filter(elem => elem.administrator).length}</a></p>
+            <p class="confirm-account-users">Пользователи, подтвердившие аккаунт: <a href="#users">${input.users.filter(elem => elem.isVerify).length}</a></p>
+            <p class="vk-users">Пользователи, авторизовавшиеся через Вконтакте: <a href="#users">${input.users.filter(elem => elem.VKUid).length}</a></p>
+        </div>
+    </div>
+    <div class="side project-block">
+        <h3 class="block-header">Проекты:</h3>
+        <div class="block-content">
+            <p class="full-team">Всего: <a href="#project">${input.projects.length}</a></p>
+            <p class="full-team">С полной командой: <a href="#project">${input.projects.filter(elem => !Object.values(elem.need).reduce((x, y) => x * 1 + y * 1) && elem.users.length).length}</a></p>
+            <p class="not-full-team">Команда собрана не полностью: <a href="#project">${input.projects.filter(elem => Object.values(elem.need).reduce((x, y) => x * 1 + y * 1) && elem.users.length).length}</a></p>
+            <p class="no-team">Без команды: <a href="#project">${input.projects.filter(elem => !Object.values(elem.need).reduce((x, y) => x * 1 + y * 1) && !elem.users.length).length}</a></p>
+        </div>
+    </div>
+</div>

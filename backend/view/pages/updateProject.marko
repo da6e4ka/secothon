@@ -1,0 +1,107 @@
+<include('../layout/page.marko', input)>
+<@body>
+<section class="about-us">
+    <div>
+        <form class="container" action="/project/update" method="post">
+            <div class="form-group">
+                <label for="name_project"><span> * </span> Название проекта</label>
+                <input required type="text" class="form-control" name="name_project" id="name_project" value="${input.project.title}" spellcheck="true">
+            </div>
+            <div class="form-area form-group">
+                <label for="about_project"><span> * </span> О проекте</label>
+                <textarea required class="form-control" id="about_project" name="about_project" rows="5" spellcheck="true">${input.project.text}</textarea>
+            </div>
+            <div class="form-area form-group">
+                <label for="project_problem"><span> * </span> Проблемы</label>
+                <textarea required class="form-control" id="project_problem" name="project_problem" rows="5" spellcheck="true">${input.project.problem}</textarea>
+            </div>
+            <div class="form-area form-group">
+                <label for="project_solution">Решение</label>
+                <textarea class="form-control" id="project_solution" name="project_solution" rows="5" spellcheck="true">${input.project.solution}</textarea>
+            </div>
+            <div class="form_group">
+                <div class="row justify-content-center">
+                    <p class="field">
+                        Кто требуется в команду?
+                    </p>
+                </div>
+                <style>
+                    .form-control-range {
+                        width: auto;
+                    }
+                </style>
+                <for(role in Object.keys(input.roles))>
+                    <label for="${role}"><span class="work">${input.roles[role]}</span>: </label>
+                    <input class="form-control form-control-range" value="${input.project.need[role]}" type="number" id="${role}" name="${role}" min="0" max="5">
+                </for>
+
+
+                <table class="tablesorter">
+                    <thead>
+                    <tr>
+                        <th style="width: 0">№</th>
+                        <th>Пользователь</th>
+                        <th>Роль</th>
+
+                        <!--<th class="{sorter: false}">Редактировать</th>-->
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <for(let index = 0; index < input.project.users.length; index++)>
+                    $ let user = input.project.users[index]
+                    <tr>
+                        <form action="/project/users/save?id=${user._id}" method="post">
+                            <td>${user.name} ${user.lastname}</td>
+                            <td>${user.role}</td>
+                            <td>
+                                <a href="/project/member/delete?id=${user._id}">Удалить</a>
+                            </td>
+                        </form>
+                    </tr>
+                    </for>
+                    </tbody>
+                </table>
+                </div>
+
+            <div class="flex mt-3 row">
+                <button type="submit" class="btn btn-success">
+                    Сохранить изменения
+                </button>
+
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-project" style="margin-left: auto">
+                    Удалить проект
+                </button>
+            </div>
+
+
+            <div class="modal" tabindex="1" role="dialog" id="delete-project">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Удаление проекта</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="font-size: 20px">
+                            <p>
+                                Вы действительно хотите удалить проект? <br/>
+                                Он будет удален без возможности восстановления <br/> <br/>
+                                Вы ещё не передумали?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/project/delete" class="btn btn-danger">Да, удалить</a>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Я передумал</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</section>
+</@body>
+</include>

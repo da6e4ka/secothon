@@ -1,0 +1,44 @@
+$ let user = input.user;
+$ let isReal = (key) => (user[key] && user[key].toString() && !(user[key].toString() in ['""', "''", "{}", "[]", ""]));
+$ let anySocial = isReal("Facebook") || isReal("Github") || isReal("VKUid") || isReal("otherSocial");
+$ let avatarLink = isReal("avatar") ? user.avatar : "https://www.gravatar.com/avatar/" + user.emailMd5 + "?s=70&d=monsterid";
+
+<div class="${input.class ? input.class : 'container'}" id="user._id || user.id || ''">
+        <div class="user-column col-12">
+            <div class="users-pic">
+                <img class="users_pic" src="${avatarLink}" style="float: left; margin-right: 20px; border-radius: 50%; width: 80px; height: 80px" alt="" />
+            </div>
+            <p class="part_users project-autor">${user.name} ${user.lastname}<br/>
+                <span if(input.showUserRole) class="work">
+                    ${ input.roles ? input.roles[user.role.toString()] : user.role }
+                </span>
+            </p>
+            <div if(input.showAbout && (isReal('about') || anySocial)) id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title panel-users-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse${user._id}UserInfo" aria-expanded="true" aria-controls="collapseOne">
+                                Подробнее
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse${user._id}UserInfo" class="panel-collapse panel-users-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <p if(isReal('about'))  class="faq-header-list">О себе:<br/>
+                            <span class="users_work">${user.about}</span>
+                            <br/>
+                        </p>
+
+                        <p if(anySocial) class="faq-header-list users-list">Ссылки на соц. сети:<br/>
+                            <ul class="faq-list">
+                            <li if(isReal("Facebook"))><a href="http://facebook.com/${user.Facebook}">Facebook</a></li>
+                            <li if(isReal("Github"))><a href="http://github.com/${user.Github}">GitHub</a></li>
+                            <li if(isReal("VKUid"))><a href="http://vk.com/id${user.VKUid}">VK</a></li>
+                            <li if(isReal("otherSocial"))><a href="http://${user.otherSocial}">${user.otherSocial}</a></li>
+                        </ul>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

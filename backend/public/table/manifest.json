@@ -1,0 +1,8 @@
+{
+  "api_version": 4,
+  "layout": {
+    "logo": "http://secothon.secon.ru/table/logo.png",
+    "color": "#1f0f55"
+  },
+  "feed": "http://secothon.secon.ru/table/feed.json"
+}

@@ -1,0 +1,44 @@
+<include('../layout/page.marko', input)>
+<@body>
+<section class="about-us">
+    <div class="container mt-3 text-about-us" >
+        <for(nomination in input.nominations)>
+            <div class="row justify-content-center align-items-center" id="${nomination.name}">
+                <div class="col-md-1 p-0 m-4">
+                    <img class="nomination-logo" src="${nomination.picture}" alt=""/>
+                </div>
+                <div class="col-md-10 p-0">
+                    <h3>${nomination.name}</h3>
+                </div>
+                <div class="col-md-12">
+                    <div>
+                        <ul class="list">
+                            <for(l in nomination.description.split('\n'))>
+                                <li>${l}</li>
+                            </for>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        </for>
+        <!--<div class="row justify-content-center align-items-center">-->
+            <!--<div class="col-md-1 p-0 m-4"><img class="nomination-logo" src="img/panel/Enteriement.svg" alt=""/></div>-->
+            <!--<div class="col-md-10 p-0">-->
+                <!--<h3>Entertainment</h3>-->
+            <!--</div>-->
+            <!--<div class="col-md-12">-->
+                <!--<div>-->
+                    <!--<ul class="list">-->
+                        <!--<li>Оригинальность идеи</li>-->
+                        <!--<li>Насколько успешно реализована игровая механика</li>-->
+                        <!--<li>Прототип полностью разработан на SECOTHON’2018</li>-->
+                        <!--<li>Счастье пользователя</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</section>
+</@body>
+</include>

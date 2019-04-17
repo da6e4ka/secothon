@@ -1,0 +1,116 @@
+<include('../layout/page.marko', input)>
+<@body>
+$ const multiline = (string) => string.split('&').join('&amp;').split('"').join('&quot;').split("'").join('&#39;').split('<').join('&lt;').split('>').join('&gt;').split('\r\n').join("<br/>");
+<section class="about-us">
+    <section if((input.user && !input.user.project) || input.projects.length) class="container">
+        <div if(input.user && !input.user.project)  class="row m-3 justify-content-center">
+            <a href="/project/create">
+                <button class="btn button-project btn-blue">
+                Добавить проект
+            </button>
+            </a>
+        </div>
+        <div class="row justify-content-center">
+            <h4 if(input.projects.length) class="number_participant">
+                Идей: ${input.projects.length}
+            </h4>
+        </div>
+        <hr />
+    </section>
+    <div if(input.projects.length)>
+        <for(project in input.projects)>
+        $ let author = input.users.find(elem => project.uid.toString() == elem._id.toString())
+        <div if(author) class="project container">
+            <div class="projects_header">
+                <div class="content_title">
+                    Проект:
+                </div>
+                <div class="projects_name">
+                    ${project.title}
+                </div>
+            </div>
+            <div class="projects_body row mb-3">
+                <div class="project_sidebar col-sm-8">
+                    <div class="project_content">
+                        <div class="content_title">
+                            О проекте:
+                        </div>
+                        <div class="project-description">
+                           ${project.text}
+                        </div>
+                    </div>
+
+                    <div id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                    <a class="btn btn-blue" data-toggle="collapse" data-parent="#accordion" href="#collapse${project.uid}" aria-expanded="true" aria-controls="collapseOne">
+                                        Подробнее
+                                    </a>
+                            </div>
+                            <div id="collapse${project.uid}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="content_title">Проблема:</div>
+                                <div class="project-description">
+                                    $!{multiline(project.problem)}
+                                </div>
+
+                                <div class="content_title">Решение:</div>
+                                <div class="project-description">
+                                    $!{multiline(project.solution)}
+                                </div>
+
+                                <div class="content_title">Команда проекта:</div>
+                                <div class="project-description">
+                                    <if(project.users.length)>
+                                        <for(userId in project.users)>
+                                        $ let projectUser = input.users.find( elem => elem._id.toString() === userId.toString() )
+                                            <if(projectUser)>
+                                                <include('../layout/user.marko', input) user=projectUser showUserRole=true/>
+                                            </if>
+                                        </for>
+                                    </if><else>
+                                        В комманде пока никого нет
+                                    </else>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project_content">
+                            <div class=" project_content">
+                                <div class="idea_author">
+                                    <div class="content_title ">
+                                        Автор идеи:
+                                    </div>
+                                </div>
+                                <include('../layout/user.marko', input) user=author showUserRole=true/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project_group col-sm-auto">
+                        <if(project.need && Object.values(project.need).reduce((x, y) => x * 1 + y * 1))>
+                            В команду ещё нужны:<br/>
+                            <for(role in Object.keys(project.need))>
+                                $ let count = project.need[role] * 1
+                                <label if(count && count === 1)><span class="users_work">${input.roles[role]}</span></label>
+                                <label else-if(count)><span class="users_work">${input.needRole[role]}</span>: ${count}</label>
+                                <br if(count || count === 1)/>
+                            </for>
+                        </if><else>
+                            Команда проекта в полном составе
+                        </else>
+                    </div>
+                </div>
+            </div>
+            <if(input.user && input.user.paid)>
+                <a if(!input.user.project && project.need && project.need[input.user.role]) class="btn btn-blue" href="/join?project=${project._id}">Присоединиться к проекту</a>
+                <a else-if(input.user.project && input.user._id.toString() === project.uid.toString()) class="btn btn-success" href="/project/update">Изменить проект</a>
+                <a else-if(input.user.project && project.users.indexOf(input.user._id.toString()) !== -1 ) class="btn btn-danger" href="/leave">Выйти из проекта</a>
+            </if>
+        </div>
+        </for>
+    </div>
+    <p else class="container mt-3 text-about-us">
+        Проектов пока нет. Будьте первыми, кто <a href="/project/create" body-only-if(!input.user)>предложит идею для проекта!</a><br/>
+        <if(!input.user)>Для этог нужно <a href="/login">быть зарегистрированным на нашем сайте</a>.</if>
+    </p>
+</section>
+</@body>
+</include>

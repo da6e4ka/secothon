@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width"/>
+    <style type="text/css">
+        * { margin: 0; padding: 0; font-size: 100%; font-family: 'Avenir Next', "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; line-height: 1.65; }
+        img { max-width: 100%; margin: 0 auto; display: block; }
+        body, .body-wrap { width: 100% !important; height: 100%; background: #f8f8f8; }
+        a { color: #1f0f55; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .button { display: inline-block; color: white; background: #200f51; border: solid #1f0f55; border-width: 10px 20px 8px; font-weight: bold; border-radius: 4px; }
+        .button:hover { text-decoration: none; }
+        h1, h2, h3, h4, h5, h6 { margin-bottom: 20px; line-height: 1.25; }
+        h1 { font-size: 32px; }
+        h2 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; }
+        h5 { font-size: 16px; }
+        p, ul, ol { font-size: 16px; font-weight: normal; margin-bottom: 20px; }
+        .container { display: block !important; clear: both !important; margin: 0 auto !important; max-width: 580px !important; }
+        .container table { width: 100% !important; border-collapse: collapse; }
+        .container .content { background: white; padding: 30px 35px; }
+        .container .content.footer { background: none; }
+        .container .content.footer p { margin-bottom: 0; color: #888; text-align: center; font-size: 14px; }
+        .container .content.footer a { color: #888; text-decoration: none; font-weight: bold; }
+        .container .content.footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<table class="body-wrap">
+    <tr>
+        <td class="container">
+            <!-- Message start -->
+            <table>
+                <tr>
+                    <td align="center" class="masthead">
+                        <img src="http://secothon.secon.ru/img/email.png"  style="background-position: center; background-size: cover" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="content">
+                        <h2>ДОБРЫЙ ДЕНЬ, ${input.name}!</h2>
+                        <p>Благодарим Вас за оплату участия в SECOTHON'2018!</p>
+                        <table>
+                            <tr>
+                                <td align="center">
+                                    <p>
+                                        Для того, что бы Вы смогли всеми возможностями сайта <a href="http://secothon.secon.ru">SECON'2018</a> следует зарегестрироваться или создать аккаунт с данной почтой: <strong>${input.email}</strong><br/>
+                                        Так же, если у Вас что-то пошло не так, то пишите нам на <a href="mailto:secothon@secon.ru">почту</a> или администраторам группы
+                                        <a href="https://vk.com/secothon_2018">SECOTHON'2018 в ВКонтакте</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>Если Вы не регистрировались, просим не отвечать на это письмо. <br/>
+                            Спасибо.
+                        </p>
+                        <p><em>– Команда SECOTHON'2018 </em></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="container">
+            <!-- Message start -->
+            <table>
+                <tr>
+                    <td class="content footer" align="center">
+                        <p>Оргазинатор <a href="http://secon.ru/">Ассоциация Secon</a></p>
+                        <p><a href="mailto:secothon@secon.ru">secothon@secon.ru</a> | <a href="http://secothon.secon.ru/">SECOTHON'2018</a></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

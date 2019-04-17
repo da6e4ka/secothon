@@ -1,0 +1,39 @@
+<include('../../layout/adminPage.marko', input) title="Изменить информационного партнёра">
+<@body>
+$ let data = input.data
+<form class="container" method="post" action="/admin/edit/support?id=${data._id}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name"><span>*</span> Название ресурса</label>
+        <input name="name" class="form-control" id="name" type="text" placeholder="Название" value="${data.name}" required>
+    </div>
+    <div class="form-group">
+        <label for="link"><span>*</span> Ссылка на ресурс</label>
+        <div class="input-group" id="link">
+            <div class="input-group-prepend">
+                <span class="input-group-text">http://</span>
+            </div>
+            <input type="text" name="link" class="form-control" placeholder="Ссылка" value="${data.link}" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="picture">Лого ресурса</label>
+        <br/>
+        <input accept="image/jpeg,image/jpg,image/png,image/gif,image/svg,image/x-icon" name="picture" id="picture" type="file">
+    </div>
+
+    <div class="form-group">
+        <label for="org-logo">Лого ресурса сейчас:</label>
+        <img src="${data.picture}" id="org-logo">
+    </div>
+
+    <div class="flex">
+        <button type="submit" class="btn btn-blue">
+            Обновить
+        </button>
+        <button type="reset" class="btn btn-blue" style="margin-left: auto;">
+            Сбросить
+        </button>
+    </div>
+</form>
+</@body>
+</include>
